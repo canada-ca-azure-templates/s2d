@@ -20,62 +20,67 @@ The following security controls can be met through configuration of this templat
 
 ```json
 {
-  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {
-    "namePrefix": {
-      "value": "pws3rds"
-    },
-    "storageAccountType": {
-      "value": "Premium_LRS"
-    },
-    "vmSize": {
-      "value": "Standard_DS2_v2"
-    },
-    "vmCount": {
-      "value": 2
-    },
-    "vmDiskSize": {
-      "value": 256
-    },
-    "vmDiskCount": {
-      "value": 2
-    },
-    "existingDomainName": {
-      "value": "mgmt.pws3.pspc-spac.ca"
-    },
-    "adminUsername": {
-      "value": "azureadmin"
-    },
-    "adminPasswordSecret": {
-      "value": "server2016DefaultPassword"
-    },
-    "existingVirtualNetworkRGName": {
-      "value": "PwS3-Infra-NetMGMT-RG"
-    },
-    "existingVirtualNetworkName": {
-      "value": "PwS3-Infra-NetMGMT-VNET"
-    },
-    "existingSubnetName": {
-      "value": "PwS3-MGMT-APP-RDS"
-    },
-    "sofsName": {
-      "value": "fs01"
-    },
-    "shareName": {
-      "value": "data"
-    },
-    "tagValues": {
-        "value": {
-            "Owner": "yann.gagnon@tpsgc-pwgsc.gc.ca",
-            "CostCenter": "PSPC-EA",
-            "Enviroment": "Sandbox",
-            "Classification": "Unclassified",
-            "Organizations": "PSPC-CCC-E&O",
-            "DeploymentVersion": "2019-01-11-01"
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "namePrefix": {
+            "value": "vals2d"
+        },
+        "storageAccountType": {
+            "value": "Premium_LRS"
+        },
+        "vmSize": {
+            "value": "Standard_DS2_v2"
+        },
+        "vmCount": {
+            "value": 2
+        },
+        "vmDiskSize": {
+            "value": 256
+        },
+        "vmDiskCount": {
+            "value": 2
+        },
+        "existingDomainName": {
+            "value": "validate.gc.ca.local"
+        },
+        "keyVaultResourceGroupName": {
+            "value": "PwS2-validate-s2d-RG"
+        },
+        "keyVaultName": {
+            "value": "PwS2-validate-[unique]"
+        },
+        "adminUsername": {
+            "value": "azureadmin"
+        },
+        "adminPasswordSecret": {
+            "value": "server2016DefaultPassword"
+        },
+        "existingVirtualNetworkRGName": {
+            "value": "PwS2-validate-s2d-RG"
+        },
+        "existingVirtualNetworkName": {
+            "value": "PwS2-validate-s2d-VNET"
+        },
+        "existingSubnetName": {
+            "value": "APP"
+        },
+        "sofsName": {
+            "value": "fs01"
+        },
+        "shareName": {
+            "value": "data"
+        },
+        "tagValues": {
+            "value": {
+                "Owner": "build.pipeline@tpsgc-pwgsc.gc.ca",
+                "CostCenter": "PSPC-EA",
+                "Enviroment": "Validate",
+                "Classification": "Unclassified",
+                "Organizations": "PSPC-CCC-E&O"
+            }
         }
     }
-  }
 }
 ```
 
