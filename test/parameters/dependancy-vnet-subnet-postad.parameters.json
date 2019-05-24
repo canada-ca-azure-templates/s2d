@@ -10,6 +10,12 @@
                     "addressPrefixes": [
                         "10.250.0.0/20"
                     ],
+                    "dhcpOptions": {
+                        "dnsServers": [
+                            "10.250.1.8",
+                            "10.250.1.8"
+                        ]
+                    },
                     "subnets": [
                         {
                             "name": "APP",
