@@ -44,6 +44,9 @@
         "existingSubnetName": {
             "value": "APP"
         },
+        "ClusterIp": {
+            "value": "169.254.1.20"
+        },
         "sofsName": {
             "value": "fs01"
         },
