@@ -121,7 +121,8 @@ The following security controls can be met through configuration of this templat
 
 ## History
 
-| Date     | Release                                                                    | Change                                                       |
-| -------- | -------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| 20190506 | [20190506](https://github.com/canada-ca-azure-templates/s2d/tree/20190506) | Move to new github structure and add validation              |
-| 20190531 | [20190531](https://github.com/canada-ca-azure-templates/s2d/tree/20190532) | Add support for custom cluster IP through template parameter |
+| Date     | Release                                                                    | Change                                                        |
+| -------- | -------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| 20190506 | [20190506](https://github.com/canada-ca-azure-templates/s2d/tree/20190506) | Move to new github structure and add validation               |
+| 20190531 | [20190531](https://github.com/canada-ca-azure-templates/s2d/tree/20190532) | Add support for custom cluster IP through template parameter. |
+|          |                                                                            | Fix broken link for release 20190506                          |
