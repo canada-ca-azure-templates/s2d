@@ -57,6 +57,12 @@
         "tagValues": {
             "type": "object"
         },
+        "ClusterIp": {
+            "type": "string",
+            "metadata": {
+                "description": "Desired IP for the cluster. Make sure it is unique in the scope of the Active Directory or it qill break the other cluster that use the same IP."
+            }
+        },
         "_artifactsLocation": {
             "type": "string"
         },
@@ -287,7 +293,8 @@
                         "adminCreds": {
                             "userName": "[parameters('adminUsername')]",
                             "password": "PrivateSettingsRef:adminPassword"
-                        }
+                        },
+                        "ClusterIp": "[parameters('ClusterIp')]"
                     }
                 },
                 "protectedSettings": {

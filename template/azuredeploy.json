@@ -105,6 +105,13 @@
                 "description": "Name of the existing subnet in the existing VNET to which the S2D VMs should be deployed"
             }
         },
+        "ClusterIp": {
+            "type": "string",
+            "metadata": {
+                "description": "Desired IP for the cluster. Make sure it is unique in the scope of the Active Directory or it qill break the other cluster that use the same IP."
+            },
+            "defaultValue": "169.254.1.10"
+        },
         "sofsName": {
             "type": "string",
             "metadata": {
@@ -267,6 +274,9 @@
                     },
                     "tagValues": {
                         "value": "[parameters('tagValues')]"
+                    },
+                    "ClusterIp": {
+                        "value": "[parameters('ClusterIp')]"
                     },
                     "_artifactsLocation": {
                         "value": "[parameters('_artifactsLocation')]"
