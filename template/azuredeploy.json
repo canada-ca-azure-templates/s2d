@@ -275,7 +275,7 @@
                     "tagValues": {
                         "value": "[parameters('tagValues')]"
                     },
-                    "clusterIP": {
+                    "ClusterIp": {
                         "value": "[parameters('ClusterIp')]"
                     },
                     "_artifactsLocation": {

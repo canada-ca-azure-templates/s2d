@@ -295,7 +295,7 @@
                             "userName": "[parameters('adminUsername')]",
                             "password": "PrivateSettingsRef:adminPassword"
                         },
-                        "clusterIP": {
+                        "ClusterIp": {
                             "ClusterIp": "[parameters('ClusterIp')]"
                         }
                     }
