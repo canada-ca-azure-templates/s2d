@@ -65,6 +65,9 @@ The following security controls can be met through configuration of this templat
         "existingSubnetName": {
             "value": "APP"
         },
+        "ClusterIp": {
+            "value": "169.254.1.10"
+        },
         "sofsName": {
             "value": "fs01"
         },
