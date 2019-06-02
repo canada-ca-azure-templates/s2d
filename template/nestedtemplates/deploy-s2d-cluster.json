@@ -61,8 +61,7 @@
             "type": "string",
             "metadata": {
                 "description": "Desired IP for the cluster. Make sure it is unique in the scope of the Active Directory or it qill break the other cluster that use the same IP."
-            },
-            "defaultValue": "169.254.1.10"
+            }
         },
         "_artifactsLocation": {
             "type": "string"
@@ -295,9 +294,7 @@
                             "userName": "[parameters('adminUsername')]",
                             "password": "PrivateSettingsRef:adminPassword"
                         },
-                        "ClusterIp": {
-                            "ClusterIp": "[parameters('ClusterIp')]"
-                        }
+                        "ClusterIp": "[parameters('ClusterIp')]"
                     }
                 },
                 "protectedSettings": {
