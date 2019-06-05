@@ -5,18 +5,18 @@
         "deploymentRGArray": {
             "value": [
                 {
-                    "name": "active-directory",
+                    "name": "active-directory-s2d",
                     "resourceGroup": "PwS2-validate-s2d-RG",
                     "templateLink": "https://raw.githubusercontent.com/canada-ca-azure-templates/active-directory/20190516/template/azuredeploy.json",
                     "parametersFile": "dependancy-active-directory.parameters.json"
                 },
                 {
-                    "name": "vnet-subnet-post-adds",
+                    "name": "vnet-subnet-post-adds-s2d",
                     "resourceGroup": "PwS2-validate-s2d-RG",
                     "templateLink": "https://raw.githubusercontent.com/canada-ca-azure-templates/vnet-subnet/20190516/template/azuredeploy.json",
                     "parametersFile": "dependancy-vnet-subnet-postad.parameters.json",
                     "dependsOn": [
-                        "active-directory"
+                        "active-directory-s2d"
                     ]
                 }
             ]
