@@ -65,7 +65,11 @@ if (-not $doNotCleanup) {
     if ($resourceGroup) {
         Write-Host "Cleanup old $templateLibraryName template validation resources if needed..."
 
-        Remove-AzureRmResourceGroup -Name PwS2-validate-$templateLibraryName-RG -Verbose -Force
+        $success = Remove-AzureRmResourceGroup -Name PwS2-validate-$templateLibraryName-RG -Verbose -Force
+
+        if (!$success) {
+            throw "Could not cleanup old resourcegroup..."
+        }
     }
 }
 
@@ -75,14 +79,19 @@ if (-not $doNotDeployPreReq) {
 
     New-AzureRmDeployment -Location $Location -Name "Deploy-$templateLibraryName-Template-Infrastructure-Dependancies" -TemplateUri "https://raw.githubusercontent.com/canada-ca-azure-templates/masterdeploy/20190605/template/masterdeploysub.json" -TemplateParameterFile (Resolve-Path -Path "$PSScriptRoot\parameters\masterdeploysub.parameters.json") -baseParametersURL $baseParametersURL -Verbose;
 
-    $provisionningState = (Get-AzureRmDeployment -Name "Deploy-$templateLibraryName-Template-Infrastructure-Dependancies").ProvisioningState
+    $provisionningState = ""
+    $provisionningState = (Get-AzureRmDeployment -Name "Deploy-$templateLibraryName-Template-Infrastructure-Dependancies" -ErrorAction SilentlyContinue).ProvisioningState
 
-    if ($provisionningState -eq "Failed") {
+    if (!($provisionningState -eq "Succeeded")) {
         # Cleanup validation resource content
         if (-not $doNotCleanup) {
             Write-Host "Cleanup $templateLibraryName template validation resources...";
 
-            Remove-AzureRmResourceGroup -Name PwS2-validate-$templateLibraryName-RG -Verbose -Force
+            $success = Remove-AzureRmResourceGroup -Name PwS2-validate-$templateLibraryName-RG -Verbose -Force
+
+            if (!$success) {
+                Write-Host "Could not cleanup old resourcegroup..."
+            }
         }
 
         throw "One of the jobs was not successfully created... exiting..."
@@ -92,14 +101,19 @@ if (-not $doNotDeployPreReq) {
 
     New-AzureRmDeployment -Location $Location -Name "Deploy-$templateLibraryName-Template-Active-Directory-Dependancy" -TemplateUri "https://raw.githubusercontent.com/canada-ca-azure-templates/masterdeploy/20190605/template/masterdeployrg.json" -TemplateParameterFile (Resolve-Path -Path "$PSScriptRoot\parameters\masterdeployrg-ad.parameters.json") -baseParametersURL $baseParametersURL -Verbose;
 
-    $provisionningState = (Get-AzureRmDeployment -Name "Deploy-$templateLibraryName-Template-Active-Directory-Dependancy").ProvisioningState
+    $provisionningState = ""
+    $provisionningState = (Get-AzureRmDeployment -Name "Deploy-$templateLibraryName-Template-Active-Directory-Dependancy" -ErrorAction SilentlyContinue).ProvisioningState
 
-    if ($provisionningState -eq "Failed") {
+    if (!($provisionningState -eq "Succeeded")) {
         # Cleanup validation resource content
         if (-not $doNotCleanup) {
             Write-Host "Cleanup $templateLibraryName template validation resources...";
 
-            Remove-AzureRmResourceGroup -Name PwS2-validate-$templateLibraryName-RG -Verbose -Force
+            $success = Remove-AzureRmResourceGroup -Name PwS2-validate-$templateLibraryName-RG -Verbose -Force
+
+            if (!$success) {
+                Write-Host "Could not cleanup old resourcegroup..."
+            }
         }
 
         throw "Active-directory was not successfully created... exiting..."
@@ -111,16 +125,21 @@ Write-Host "Starting $templateLibraryName validation deployment...";
 
 New-AzureRmResourceGroupDeployment -ResourceGroupName PwS2-validate-$templateLibraryName-RG -Name "validate-$templateLibraryName-template" -TemplateUri $validationURL -TemplateParameterFile (Resolve-Path "$PSScriptRoot\parameters\validate.parameters.json") -Verbose
 
-$provisionningState = (Get-AzureRmResourceGroupDeployment -ResourceGroupName PwS2-validate-$templateLibraryName-RG -Name "validate-$templateLibraryName-template").ProvisioningState
+$provisionningState = ""
+$provisionningState = (Get-AzureRmResourceGroupDeployment -ResourceGroupName PwS2-validate-$templateLibraryName-RG -Name "validate-$templateLibraryName-template" -ErrorAction SilentlyContinue).ProvisioningState
 
 # Cleanup validation resource content
 if (-not $doNotCleanup) {
     Write-Host "Cleanup $templateLibraryName template validation resources...";
 
-    Remove-AzureRmResourceGroup -Name PwS2-validate-$templateLibraryName-RG -Verbose -Force
+    $success = Remove-AzureRmResourceGroup -Name PwS2-validate-$templateLibraryName-RG -Verbose -Force
+
+    if (!$success) {
+        Write-Host "Could not cleanup old resourcegroup..."
+    }
 }
 
-if ($provisionningState -eq "Failed") {
+if (!($provisionningState -eq "Succeeded")) {
     throw "Validation deployment failed..."
 }
 else {
